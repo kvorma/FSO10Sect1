@@ -5,7 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text type="title">Welcome to FullStackOpen Part 10!</Text>
-      <Text>Let's learn React Native!</Text>
+      <Text>Let&apos;s learn React Native!</Text>
       <StatusBar style="auto" />
     </View>
   )
