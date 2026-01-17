@@ -1,21 +1,7 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import Main from './src/components/Main'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text type="title">Welcome to FullStackOpen Part 10!</Text>
-      <Text>Let&apos;s learn React Native!</Text>
-      <StatusBar style="auto" />
-    </View>
-  )
+const App = () => {
+  return <Main />
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
+export default App
