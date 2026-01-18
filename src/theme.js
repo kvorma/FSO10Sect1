@@ -3,6 +3,7 @@ const theme = {
     textPrimary: '#24292e',
     textSecondary: '#b8c0c9', //#586069',
     textLight: '#fff',
+    error: '#d73a4a',
     primary: '#0366d6',
     mainBackground: '#e1e4e8',
     panel: '#fff',
@@ -12,7 +13,10 @@ const theme = {
     subheading: 16,
   },
   fonts: {
-    main: 'System',
+    android: 'Roboto',
+    ios: 'Arial',
+    native: 'System',
+    web: 'System',
   },
   fontWeights: {
     normal: '400',

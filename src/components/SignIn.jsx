@@ -1,73 +1,118 @@
 import { TextInput, Pressable, View, StyleSheet } from 'react-native'
 import { useFormik } from 'formik'
+import * as yup from 'yup'
 
 import Text from './Text'
 import theme from '../theme'
+import { fErr } from '../utils'
 
-const initialValues = {
-  username: '',
-  password: '',
-}
+const validationSchema = yup.object().shape({
+  username: yup.string().required('Username is required'),
+  password: yup.string().required('Password is required'),
+})
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 0,
+    flexDirection: 'column',
+    backgroundColor: theme.colors.mainBackground,
+  },
+  panel: {
+    backgroundColor: theme.colors.panel,
+    height: 60,
+    margin: 0,
+  },
+  textInput: {
+    color: theme.colors.textPrimary,
+    placeholderTextColor: theme.colors.textSecondary,
+    //   borderColor: theme.colors.textPrimary,
+    backgroundColor: theme.colors.panel,
+    height: 40,
+    margin: 10,
+    borderWidth: 2,
+    borderRadius: 5,
+    padding: 10,
+  },
+  submit: {
+    textAlign: 'center',
+    color: theme.colors.textLight,
+    backgroundColor: theme.colors.primary,
+    height: 40,
+    margin: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+  },
+  error: {
+    height: 20,
+    marginTop: -10,
+    marginBottom: 0,
+    paddingLeft: 10,
+    //  paddingTop: 0,
+    //  paddingBottom: 0,
+    backgroundColor: theme.colors.panel,
+  },
+})
 
 const SignInForm = ({ onSubmit }) => {
   const formik = useFormik({
-    initialValues,
-    onSubmit,
+    initialValues: {
+      username: '',
+      password: '',
+    },
+    validationSchema,
+    onSubmit: onSubmit,
   })
-  const styles = StyleSheet.create({
-    container: {
-      padding: 0,
-      flexDirection: 'column',
-      backgroundColor: theme.colors.mainBackground,
-    },
-    panel: {
-      backgroundColor: theme.colors.panel,
-      height: 60,
-      margin: 0,
-    },
+  const userColor = StyleSheet.create({
     textInput: {
-      color: theme.colors.textPrimary,
-      placeholderTextColor: theme.colors.textSecondary,
-      borderColor: theme.colors.textPrimary,
-      backgroundColor: theme.colors.panel,
-      height: 40,
-      margin: 10,
-      borderWidth: 1,
-      borderRadius: 5,
-      padding: 10,
-    },
-    submit: {
-      textAlign: 'center',
-      color: theme.colors.textLight,
-      backgroundColor: theme.colors.primary,
-      height: 40,
-      margin: 10,
-      borderWidth: 1,
-      borderRadius: 5,
-      padding: 10,
+      borderColor: fErr(formik, 'username')
+        ? theme.colors.error
+        : theme.colors.textPrimary,
     },
   })
+  const userStyle = StyleSheet.compose(styles.textInput, userColor.textInput)
+  const pwColor = StyleSheet.create({
+    textInput: {
+      borderColor: fErr(formik, 'password')
+        ? theme.colors.error
+        : theme.colors.textPrimary,
+    },
+  })
+  const pwStyle = StyleSheet.compose(styles.textInput, pwColor.textInput)
+  console.log(userStyle)
 
   return (
     <View style={styles.container}>
       <View style={styles.panel}>
         <TextInput
-          style={styles.textInput}
+          style={userStyle}
           placeholder="Username"
           value={formik.values.username}
           onChangeText={formik.handleChange('username')}
+          onBlur={formik.handleBlur('username')}
         />
       </View>
+      {fErr(formik, 'username') && (
+        <View style={styles.error}>
+          <Text color="error">{formik.errors.username}</Text>
+        </View>
+      )}
       <View style={styles.panel}>
         <TextInput
-          style={styles.textInput}
+          style={pwStyle}
           placeholder="Password"
           value={formik.values.password}
           secureTextEntry="true"
           onChangeText={formik.handleChange('password')}
+          onBlur={formik.handleBlur('password')}
           onSubmitEditing={formik.handleSubmit}
         />
       </View>
+      {fErr(formik, 'password') && (
+        <View style={styles.error}>
+          <Text color="error">{formik.errors.password}</Text>
+        </View>
+      )}
       <View style={styles.panel}>
         <Pressable onPress={formik.handleSubmit}>
           <Text style={styles.submit} fontWeight="bold">
