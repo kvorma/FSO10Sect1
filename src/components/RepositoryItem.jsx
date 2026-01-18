@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.panel,
   },
   topRow: {
     flexDirection: 'row',
@@ -17,11 +17,9 @@ const styles = StyleSheet.create({
   infoColumn: {
     flexDirection: 'column',
     alignItems: 'flex-start',
-    //    gap: 10,
   },
   statsRow: {
     flexDirection: 'row',
-    //    gap: 10,
     justifyContent: 'space-evenly',
   },
   statsItem: {
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
 const StatsItem = ({ label, count }) => {
   return (
     <View style={styles.statsItem}>
-      <Text>{num2k(count)}</Text>
+      <Text fontWeight="bold">{num2k(count)}</Text>
       <Text>{label}</Text>
     </View>
   )
@@ -68,7 +66,7 @@ const RepositoryItem = ({ item }) => {
           <Subheading>{item.fullName} </Subheading>
           <Text>{item.description} </Text>
           <View style={styles.languageItem}>
-            <Text>{item.language}</Text>
+            <Text color="textLight">{item.language}</Text>
           </View>
         </View>
       </View>

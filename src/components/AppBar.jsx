@@ -1,23 +1,29 @@
-import { Alert, Pressable, View, StyleSheet } from 'react-native'
-// eslint-disable-next-line import/no-unresolved
-import Constants from 'expo-constants'
+import { Pressable, View, StyleSheet } from 'react-native'
+import { Link } from 'react-router-native'
 import Text from './Text'
+import theme from '../theme'
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
     height: 60,
-    backgroundColor: '#24292e',
+    backgroundColor: theme.colors.textPrimary,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 10,
+    alignItems: 'center',
+  },
+  appBarTab: {
+    paddingLeft: 10,
   },
 })
 
 const AppBarTab = ({ children }) => {
   return (
-    <Text color="textLight" fontSize="subheading" fontWeight="bold">
+    <Text
+      color="textLight"
+      fontSize="subheading"
+      fontWeight="bold"
+      style={styles.appBarTab}
+    >
       {children}
     </Text>
   )
@@ -26,8 +32,13 @@ const AppBarTab = ({ children }) => {
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => Alert.alert('Oi!')}>
-        <AppBarTab>Repositories</AppBarTab>
+      <Pressable style={styles.container}>
+        <Link to="/">
+          <AppBarTab>Repositories</AppBarTab>
+        </Link>
+        <Link to="/signin">
+          <AppBarTab>Sign in</AppBarTab>
+        </Link>
       </Pressable>
     </View>
   )

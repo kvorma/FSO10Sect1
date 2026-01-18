@@ -3,7 +3,7 @@ import Text from './Text'
 const Subheading = ({ children }) => {
   return (
     <Text
-      color="textSecondary"
+      color="textPrimary"
       fontWeight="bold"
       fontSize="subheading"
       style={{ paddingBottom: 10 }}
