@@ -22,6 +22,10 @@ const theme = {
     normal: '400',
     bold: '700',
   },
+  sizes: {
+    panelHeight: 60,
+    inputHeight: 40,
+  },
 }
 
 export default theme

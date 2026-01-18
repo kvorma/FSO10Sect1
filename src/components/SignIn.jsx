@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   panel: {
     backgroundColor: theme.colors.panel,
-    height: 60,
+    height: theme.sizes.panelHeight,
     margin: 0,
   },
   textInput: {
@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     placeholderTextColor: theme.colors.textSecondary,
     //   borderColor: theme.colors.textPrimary,
     backgroundColor: theme.colors.panel,
-    height: 40,
-    margin: 10,
+    height: theme.sizes.inputHeight,
+    margin: (theme.sizes.panelHeight - theme.sizes.inputHeight) / 2,
     borderWidth: 2,
     borderRadius: 5,
     padding: 10,
@@ -48,8 +48,6 @@ const styles = StyleSheet.create({
     marginTop: -10,
     marginBottom: 0,
     paddingLeft: 10,
-    //  paddingTop: 0,
-    //  paddingBottom: 0,
     backgroundColor: theme.colors.panel,
   },
 })
@@ -79,7 +77,6 @@ const SignInForm = ({ onSubmit }) => {
     },
   })
   const pwStyle = StyleSheet.compose(styles.textInput, pwColor.textInput)
-  console.log(userStyle)
 
   return (
     <View style={styles.container}>
