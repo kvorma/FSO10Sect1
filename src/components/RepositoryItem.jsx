@@ -7,12 +7,12 @@ import theme from '../theme'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: theme.sizes.gap,
     backgroundColor: theme.colors.panel,
   },
   topRow: {
     flexDirection: 'row',
-    gap: 10,
+    gap: theme.sizes.gap,
   },
   infoColumn: {
     flexDirection: 'column',
@@ -29,17 +29,13 @@ const styles = StyleSheet.create({
   languageItem: {
     backgroundColor: theme.colors.primary,
     padding: 5,
-    borderRadius: 5,
+    borderRadius: theme.sizes.radius,
     marginTop: 5,
-    marginBottom: 5,
+    marginBottom: theme.sizes.radius,
   },
   tinyLogo: {
     width: 50,
     height: 50,
-  },
-  logo: {
-    width: 66,
-    height: 58,
   },
 })
 

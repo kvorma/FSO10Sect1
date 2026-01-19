@@ -25,6 +25,9 @@ const theme = {
   sizes: {
     panelHeight: 60,
     inputHeight: 40,
+    gap: 10,
+    radius: 5,
+    border: 2,
   },
 }
 

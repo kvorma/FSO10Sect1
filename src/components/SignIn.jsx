@@ -28,23 +28,23 @@ const styles = StyleSheet.create({
     //   borderColor: theme.colors.textPrimary,
     backgroundColor: theme.colors.panel,
     height: theme.sizes.inputHeight,
-    margin: (theme.sizes.panelHeight - theme.sizes.inputHeight) / 2,
-    borderWidth: 2,
-    borderRadius: 5,
-    padding: 10,
+    margin: theme.sizes.gap,
+    borderWidth: theme.sizes.border,
+    borderRadius: theme.sizes.radius,
+    paddingLeft: theme.sizes.gap,
   },
   submit: {
     textAlign: 'center',
     color: theme.colors.textLight,
     backgroundColor: theme.colors.primary,
-    height: 40,
-    margin: 10,
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
+    height: theme.sizes.inputHeight,
+    margin: theme.sizes.gap,
+    borderWidth: theme.sizes.border,
+    borderRadius: theme.sizes.radius,
+    padding: theme.sizes.gap,
   },
   error: {
-    height: 20,
+    height: theme.sizes.panelHeight - theme.sizes.inputHeight,
     marginTop: -10,
     marginBottom: 0,
     paddingLeft: 10,
@@ -89,11 +89,11 @@ const SignInForm = ({ onSubmit }) => {
           onBlur={formik.handleBlur('username')}
         />
       </View>
-      {fErr(formik, 'username') && (
-        <View style={styles.error}>
+      <View style={styles.error}>
+        {fErr(formik, 'username') && (
           <Text color="error">{formik.errors.username}</Text>
-        </View>
-      )}
+        )}
+      </View>
       <View style={styles.panel}>
         <TextInput
           style={pwStyle}
@@ -105,11 +105,11 @@ const SignInForm = ({ onSubmit }) => {
           onSubmitEditing={formik.handleSubmit}
         />
       </View>
-      {fErr(formik, 'password') && (
-        <View style={styles.error}>
+      <View style={styles.error}>
+        {fErr(formik, 'password') && (
           <Text color="error">{formik.errors.password}</Text>
-        </View>
-      )}
+        )}
+      </View>
       <View style={styles.panel}>
         <Pressable onPress={formik.handleSubmit}>
           <Text style={styles.submit} fontWeight="bold">

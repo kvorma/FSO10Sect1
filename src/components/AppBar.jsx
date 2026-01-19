@@ -5,7 +5,7 @@ import theme from '../theme'
 
 const styles = StyleSheet.create({
   container: {
-    height: theme.sizes.panelHeight,
+    height: theme.sizes.inputHeight,
     backgroundColor: theme.colors.textPrimary,
     flexDirection: 'row',
   },
