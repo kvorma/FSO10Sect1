@@ -4,7 +4,7 @@ import * as yup from 'yup'
 
 import Text from './Text'
 import theme from '../theme'
-import { fErr } from '../utils'
+import { fErr } from '../utils/utils'
 
 const validationSchema = yup.object().shape({
   username: yup.string().required('Username is required'),

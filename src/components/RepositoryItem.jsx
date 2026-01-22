@@ -1,7 +1,7 @@
 import { Image, View, StyleSheet } from 'react-native'
 import Text from './Text'
 import Subheading from './Subheading'
-import { num2k } from '../utils'
+import { num2k } from '../utils/utils'
 import theme from '../theme'
 
 const styles = StyleSheet.create({

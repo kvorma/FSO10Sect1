@@ -1,4 +1,4 @@
-//import Constants from 'expo-constants'
+import Constants from 'expo-constants'
 import { StyleSheet } from 'react-native'
 import { Route, Routes, Navigate } from 'react-router-native'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 })
-
+console.log(Constants.expoConfig)
 const Main = () => {
   return (
     <SafeAreaProvider>
