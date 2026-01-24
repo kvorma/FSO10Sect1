@@ -1,10 +1,12 @@
 import { TextInput, Pressable, View, StyleSheet } from 'react-native'
+import { useNavigate } from 'react-router-native'
+import Alert from '@blazejkustra/react-native-alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-
 import Text from './Text'
 import theme from '../theme'
 import { fErr } from '../utils/utils'
+import useSignIn from '../hooks/useSignIn'
 
 const validationSchema = yup.object().shape({
   username: yup.string().required('Username is required'),
@@ -122,9 +124,21 @@ const SignInForm = ({ onSubmit }) => {
 }
 
 const SignIn = () => {
-  const onSubmit = (values) => {
-    console.log(values)
+  const [signIn] = useSignIn()
+  const navigate = useNavigate()
+
+  const onSubmit = async (values) => {
+    const { username, password } = values
+
+    try {
+      await signIn({ username, password })
+      navigate('/')
+    } catch (e) {
+      Alert.alert('Sign in failed', e.message)
+      console.log('Auth failed:', e.message)
+    }
   }
+
   return <SignInForm onSubmit={onSubmit} />
 }
 

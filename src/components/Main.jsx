@@ -1,10 +1,10 @@
-import Constants from 'expo-constants'
 import { StyleSheet } from 'react-native'
 import { Route, Routes, Navigate } from 'react-router-native'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
 import RepositoryList from './RepositoryList'
 import AppBar from './AppBar'
 import SignIn from './SignIn'
+import SignOut from './SignOut'
 import theme from '../theme'
 
 const styles = StyleSheet.create({
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 })
-console.log(Constants.expoConfig)
+
 const Main = () => {
   return (
     <SafeAreaProvider>
@@ -28,6 +28,7 @@ const Main = () => {
         <Routes>
           <Route path="/" element={<RepositoryList />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/signout" element={<SignOut />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </SafeAreaView>

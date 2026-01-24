@@ -1,23 +1,23 @@
 import { gql } from '@apollo/client'
+import { REPOSITORY_FIELDS } from './fragments'
 
 export const GET_REPOSITORIES = gql /* GraphQL */ `
   query {
     repositories {
       edges {
         node {
-          forksCount
-          fullName
-          id
-          language
-          description
-          ownerAvatarUrl
-          ratingAverage
-          reviewCount
-          stargazersCount
+          ...RepositoryFields
         }
       }
     }
   }
+  ${REPOSITORY_FIELDS}
 `
-
-// other queries...
+export const ME = gql /* GraphQL */ `
+  query {
+    me {
+      id
+      username
+    }
+  }
+`

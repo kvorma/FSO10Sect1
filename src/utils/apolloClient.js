@@ -1,10 +1,36 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
+import { SetContextLink } from '@apollo/client/link/context'
 
-const createApolloClient = () => {
-  const uri = `http://${process.env.EXPO_PUBLIC_IP_ADDR}:4000/graphql`
-  console.log('Connecting to:', uri)
+import Constants from 'expo-constants'
+
+const apolloUri = Constants.expoConfig.extra.Apollo_Uri
+
+const httpLink = new HttpLink({
+  uri: apolloUri,
+})
+
+const createApolloClient = (authStorage) => {
+  const asyncAuthLink = new SetContextLink(async (prevContext, operation) => {
+    try {
+      const accessToken = await authStorage.getAccessToken()
+      const h = {
+        headers: {
+          ...prevContext.headers,
+          authorization: accessToken ? `Bearer ${accessToken}` : '',
+        },
+      }
+      console.log('ApolloAuth:', h)
+      return h
+    } catch (e) {
+      console.log('in AuthLink:', e)
+      return {
+        headers: prevContext.headers,
+      }
+    }
+  })
+  console.log('Connecting', apolloUri)
   return new ApolloClient({
-    link: new HttpLink({ uri: uri }),
+    link: asyncAuthLink.concat(httpLink),
     cache: new InMemoryCache(),
   })
 }

@@ -17,7 +17,6 @@ const RepositoryList = () => {
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : []
-  console.log("Repositorylist.refresh()", repositories)
 
   return (
     <FlatList
