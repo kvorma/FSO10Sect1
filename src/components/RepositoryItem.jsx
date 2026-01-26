@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 
 const StatsItem = ({ label, count }) => {
   return (
-    <View style={styles.statsItem}>
+    <View label={label} style={styles.statsItem}>
       <Text fontWeight="bold">{num2k(count)}</Text>
       <Text>{label}</Text>
     </View>
@@ -50,7 +50,7 @@ const StatsItem = ({ label, count }) => {
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={styles.container}>
+    <View testID="repositoryItem" style={styles.container}>
       <View style={styles.topRow}>
         <Image
           style={styles.tinyLogo}

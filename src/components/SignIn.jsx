@@ -1,6 +1,6 @@
-import { TextInput, Pressable, View, StyleSheet } from 'react-native'
+import { Alert, TextInput, Pressable, View, StyleSheet } from 'react-native'
 import { useNavigate } from 'react-router-native'
-import Alert from '@blazejkustra/react-native-alert'
+//import Alert from '@blazejkustra/react-native-alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import Text from './Text'
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const SignInForm = ({ onSubmit }) => {
+export const SignInForm = ({ onSubmit }) => {
   const formik = useFormik({
     initialValues: {
       username: '',
