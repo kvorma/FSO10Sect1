@@ -2,7 +2,7 @@ import { Pressable, ScrollView, StyleSheet } from 'react-native'
 import { Link } from 'react-router-native'
 import Text from './Text'
 import theme from '../theme'
-import useAuthStorage from '../hooks/useAuthStorage'
+import useGetUser from '../hooks/UseGetUser'
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   align: {
-    justifyContent: 'space-between',
+    GapHorizontal: 10,
     alignItems: 'center',
   },
   appBarTab: {
@@ -33,8 +33,7 @@ const AppBarTab = ({ children }) => {
 }
 
 const AppBar = () => {
-  const auth = useAuthStorage()
-  const signed = auth.getAccessToken() ? true : false
+  const signed = useGetUser() === null ? false : true
 
   return (
     <Pressable>

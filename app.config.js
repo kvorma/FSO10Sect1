@@ -1,5 +1,5 @@
-import dotenv from 'dotenv'
-dotenv.config({ debug: true })
+import dotenvx from '@dotenvx/dotenvx'
+dotenvx.config()
 
 export default {
   expo: {
