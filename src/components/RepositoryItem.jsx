@@ -1,4 +1,6 @@
-import { Image, View, StyleSheet } from 'react-native'
+import { Image, View, StyleSheet, Pressable } from 'react-native'
+import { openURL } from 'expo-linking'
+
 import Text from './Text'
 import Subheading from './Subheading'
 import { num2k } from '../utils/utils'
@@ -37,6 +39,16 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
+  linkButton: {
+    textAlign: 'center',
+    color: theme.colors.textLight,
+    backgroundColor: theme.colors.primary,
+    height: theme.sizes.inputHeight,
+    margin: theme.sizes.gap,
+    borderWidth: theme.sizes.border,
+    borderRadius: theme.sizes.radius,
+    padding: theme.sizes.gap,
+  },
 })
 
 const StatsItem = ({ label, count }) => {
@@ -48,7 +60,11 @@ const StatsItem = ({ label, count }) => {
   )
 }
 
-const RepositoryItem = ({ item }) => {
+const RepositoryItem = ({ item, singleView }) => {
+  const onPress = (url) => {
+    openURL(url)
+  }
+
   return (
     <View testID="repositoryItem" style={styles.container}>
       <View style={styles.topRow}>
@@ -72,6 +88,15 @@ const RepositoryItem = ({ item }) => {
         <StatsItem label="Reviews" count={item.reviewCount} />
         <StatsItem label="Rating" count={item.ratingAverage} />
       </View>
+      {singleView && (
+        <View style={styles.panel}>
+          <Pressable onPress={() => onPress(item.url)}>
+            <Text style={styles.linkButton} fontWeight="bold">
+              Open In GitHub
+            </Text>
+          </Pressable>
+        </View>
+      )}
     </View>
   )
 }

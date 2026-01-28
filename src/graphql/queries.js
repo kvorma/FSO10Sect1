@@ -13,6 +13,16 @@ export const GET_REPOSITORIES = gql /* GraphQL */ `
   }
   ${REPOSITORY_FIELDS}
 `
+
+export const GET_REPOSITORY = gql /* GraphQL */ `
+  query Repository($repositoryId: ID!) {
+    repository(id: $repositoryId) {
+      ...RepositoryFields
+    }
+  }
+  ${REPOSITORY_FIELDS}
+`
+
 export const ME = gql /* GraphQL */ `
   query {
     me {

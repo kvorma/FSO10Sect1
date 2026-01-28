@@ -11,5 +11,6 @@ export const REPOSITORY_FIELDS = gql /* GraphQL */ `
     ratingAverage
     reviewCount
     stargazersCount
+    url
   }
 `
