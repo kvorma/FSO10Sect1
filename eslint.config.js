@@ -2,7 +2,7 @@
 const { defineConfig } = require('eslint/config')
 const expoConfig = require('eslint-config-expo/flat')
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended')
-const pluginJest = require('eslint-plugin-jest/config')
+//const pluginJest = require('eslint-plugin-jest/config')
 
 module.exports = defineConfig([
   expoConfig,

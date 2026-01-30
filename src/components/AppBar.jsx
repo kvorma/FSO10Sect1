@@ -1,23 +1,8 @@
-import { Pressable, ScrollView, StyleSheet } from 'react-native'
+import { Pressable, ScrollView } from 'react-native'
 import { Link } from 'react-router-native'
 import Text from './Text'
-import theme from '../theme'
-import useGetUser from '../hooks/UseGetUser'
-
-const styles = StyleSheet.create({
-  container: {
-    height: theme.sizes.inputHeight,
-    backgroundColor: theme.colors.textPrimary,
-    flexDirection: 'row',
-  },
-  align: {
-    GapHorizontal: 10,
-    alignItems: 'center',
-  },
-  appBarTab: {
-    paddingLeft: 10,
-  },
-})
+import { styles } from '../theme'
+import useGetUser from '../hooks/useGetUser'
 
 const AppBarTab = ({ children }) => {
   return (
@@ -33,26 +18,36 @@ const AppBarTab = ({ children }) => {
 }
 
 const AppBar = () => {
-  const signed = useGetUser() === null ? false : true
+  const signed = useGetUser() // === null ? false : true
 
   return (
     <Pressable>
       <ScrollView
         horizontal
-        style={styles.container}
-        contentContainerStyle={styles.align}
+        style={styles.appBarContainer}
+        contentContainerStyle={styles.appBarAlign}
       >
         <Link to="/">
           <AppBarTab>Repositories</AppBarTab>
         </Link>
         {signed ? (
-          <Link to="/signout">
-            <AppBarTab>Sign Out</AppBarTab>
-          </Link>
+          <>
+            <Link to="/review">
+              <AppBarTab>Submit a Review</AppBarTab>
+            </Link>
+            <Link to="/signout">
+              <AppBarTab>Sign Out {signed.username}</AppBarTab>
+            </Link>
+          </>
         ) : (
-          <Link to="/signin">
-            <AppBarTab>Sign in</AppBarTab>
-          </Link>
+          <>
+            <Link to="/signin">
+              <AppBarTab>Sign in</AppBarTab>
+            </Link>
+            <Link to="/signup">
+              <AppBarTab>Sign Up</AppBarTab>
+            </Link>
+          </>
         )}
       </ScrollView>
     </Pressable>

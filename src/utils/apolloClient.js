@@ -19,10 +19,10 @@ const createApolloClient = (authStorage) => {
           authorization: accessToken ? `Bearer ${accessToken}` : '',
         },
       }
-      console.log('ApolloAuth:', h)
+      //console.log('ApolloAuth:', h)
       return h
     } catch (e) {
-      console.log('in AuthLink:', e)
+      console.error('in AuthLink:', e)
       return {
         headers: prevContext.headers,
       }

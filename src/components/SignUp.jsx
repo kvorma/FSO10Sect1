@@ -7,24 +7,38 @@ import Text from './Text'
 import InputLine from './InputLine'
 import { styles } from '../theme'
 import { colorBorder } from '../utils/utils'
-import useSignIn from '../hooks/useSignIn'
+import useSignUp from '../hooks/useSignUp'
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required('Username is required'),
-  password: yup.string().required('Password is required'),
+  username: yup
+    .string()
+    .min(5)
+    .max(30)
+    .required('Username (5 .. 30 chars) is required'),
+  password: yup
+    .string()
+    .min(5)
+    .max(50)
+    .required('Password (5 .. 50 chars) is required'),
+  confirm: yup
+    .string()
+    .oneOf([yup.ref('password')], 'Passwords must match')
+    .required('Password confirmation is required'),
 })
 
-export const SignInForm = ({ onSubmit }) => {
+export const SignUpForm = ({ onSubmit }) => {
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
+      confirm: '',
     },
     validationSchema,
     onSubmit: onSubmit,
   })
   const userColor = colorBorder(formik, 'username')
   const pwColor = colorBorder(formik, 'password')
+  const confColor = colorBorder(formik, 'confirm')
 
   return (
     <View style={styles.mainContainer}>
@@ -35,13 +49,19 @@ export const SignInForm = ({ onSubmit }) => {
         ph="Password"
         fn="password"
         secureTextEntry="true"
+      />
+      <InputLine
+        form={formik}
+        bc={confColor}
+        ph="Confirm password"
+        fn="confirm"
+        secureTextEntry="true"
         onSubmitEditing={formik.handleSubmit}
       />
-
       <View style={styles.panel}>
         <Pressable onPress={formik.handleSubmit}>
           <Text style={styles.submit} fontWeight="bold">
-            Sign In
+            Sign Up
           </Text>
         </Pressable>
       </View>
@@ -49,23 +69,27 @@ export const SignInForm = ({ onSubmit }) => {
   )
 }
 
-const SignIn = () => {
-  const [signIn] = useSignIn()
+const SignUp = () => {
+  const [signUp, result] = useSignUp()
   const navigate = useNavigate()
 
   const onSubmit = async (values) => {
-    const { username, password } = values
+    const user = {
+      username: values.username,
+      password: values.password,
+    }
 
     try {
-      await signIn({ username, password })
-      navigate('/')
-    } catch (e) {
-      Alert.alert('Sign in failed', e.message)
-      console.log('Auth failed:', e.message)
+      await signUp(user)
+      Alert.alert(`Created user ${user.username}`)
+      navigate('/signin')
+    } catch (err) {
+      Alert.alert('Sign Up failed', err.message)
+      console.log('Creating user failed:', err.message)
     }
   }
 
-  return <SignInForm onSubmit={onSubmit} />
+  return <SignUpForm onSubmit={onSubmit} />
 }
 
-export default SignIn
+export default SignUp

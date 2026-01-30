@@ -7,3 +7,19 @@ export const AUTHENTICATE = gql /* GraphQL */ `
     }
   }
 `
+export const ADD_USER = gql /* GraphQL */ `
+  mutation CreateUser($user: CreateUserInput) {
+    createUser(user: $user) {
+      id
+      username
+    }
+  }
+`
+
+export const ADD_REVIEW = gql /* GraphQL */ `
+  mutation review($review: CreateReviewInput) {
+    createReview(review: $review) {
+      repositoryId
+    }
+  }
+`
