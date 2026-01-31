@@ -83,6 +83,7 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.panel,
   },
   submit: {
+    alignSelf: 'stretch',
     textAlign: 'center',
     color: theme.colors.textLight,
     backgroundColor: theme.colors.primary,
@@ -137,5 +138,10 @@ export const styles = StyleSheet.create({
   },
   separator: {
     height: theme.sizes.gap,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    flexBasis: '100%',
+    justifyContent: 'space-evenly',
   },
 })

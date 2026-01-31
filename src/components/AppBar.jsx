@@ -23,7 +23,6 @@ const AppBar = ({ setLogin }) => {
   const { loading, error, data } = useGetUser()
 
   useEffect(() => {
-    console.log('useEffect:data', data)
     setLogin(data?.me?.username ? data.me.username : null)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])

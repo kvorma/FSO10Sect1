@@ -51,7 +51,7 @@ const RepositoryItem = ({ item, detailed, login }) => {
         <StatsItem label="Reviews" count={item.reviewCount} />
         <StatsItem label="Rating" count={item.ratingAverage} />
       </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+      <View style={styles.buttonRow}>
         {detailed && (
           <Pressable onPress={() => onGitPress(item.url)}>
             <Text style={styles.submit} fontWeight="bold">
