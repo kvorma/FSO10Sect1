@@ -4,7 +4,7 @@ import Alert from '@blazejkustra/react-native-alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import Text from './Text'
-import InputLine from './InputLine'
+import { Loading, InputLine } from './Utils'
 import { styles } from '../theme'
 import { colorBorder } from '../utils/utils'
 import useSignUp from '../hooks/useSignUp'
@@ -88,6 +88,8 @@ const SignUp = () => {
       console.log('Creating user failed:', err.message)
     }
   }
+  if (result.loading) return <Loading>Creating new user..</Loading>
+  /* try..catch is signUp() manages error condition */
 
   return <SignUpForm onSubmit={onSubmit} />
 }

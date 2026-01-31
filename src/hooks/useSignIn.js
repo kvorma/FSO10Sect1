@@ -9,10 +9,10 @@ const useSignIn = () => {
 
   const signIn = async (creds) => {
     const { data } = await auth({ variables: { credentials: creds } })
-    //    console.log('signIn:auth():', data)
+    //console.log('signIn:auth():', data)
     await authStorage.setAccessToken(data.authenticate.accessToken)
     apolloClient.resetStore()
-    return data
+    return data.authenticate
   }
 
   return [signIn, result]

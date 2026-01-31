@@ -3,13 +3,10 @@ import { useNavigate } from 'react-router-native'
 
 import useRepositories from '../hooks/useRepositories'
 import RepositoryItem from './RepositoryItem'
-import ItemSeparator from './ItemSeparator'
+import { Error, Loading, ItemSeparator } from './Utils'
 
-export const RepositoryListContainer = ({ repositories }) => {
+export const RepositoryListContainer = ({ nodes }) => {
   const navigate = useNavigate()
-  const repositoryNodes = repositories?.edges
-    ? repositories.edges.map((edge) => edge.node)
-    : []
 
   const onPress = (id) => {
     const target = `/view/${id}`
@@ -18,7 +15,7 @@ export const RepositoryListContainer = ({ repositories }) => {
 
   return (
     <FlatList
-      data={repositoryNodes}
+      data={nodes}
       ItemSeparatorComponent={ItemSeparator}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
@@ -31,9 +28,14 @@ export const RepositoryListContainer = ({ repositories }) => {
 }
 
 const RepositoryList = () => {
-  const { repositories } = useRepositories()
+  const { loading, error, data } = useRepositories()
 
-  return <RepositoryListContainer repositories={repositories} />
+  if (loading) return <Loading>Loading repositories..</Loading>
+  if (error) return <Error>Error loading repositories: {error.message}</Error>
+
+  const nodes = data.repositories.edges.map((edge) => edge.node)
+
+  return <RepositoryListContainer nodes={nodes} />
 }
 
 export default RepositoryList

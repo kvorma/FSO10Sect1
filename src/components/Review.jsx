@@ -1,10 +1,10 @@
 import { Pressable, View } from 'react-native'
-import { useNavigate, Navigate } from 'react-router-native'
+import { useNavigate, Navigate, useParams } from 'react-router-native'
 import Alert from '@blazejkustra/react-native-alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import Text from './Text'
-import InputLine from './InputLine'
+import { InputLine } from './Utils'
 import { styles } from '../theme'
 import { colorBorder } from '../utils/utils'
 import useCreateReview from '../hooks/useCreateReview'
@@ -21,11 +21,11 @@ const validationSchema = yup.object().shape({
   review: yup.string(),
 })
 
-export const ReviewForm = ({ onSubmit }) => {
+export const ReviewForm = ({ onSubmit, owner, name }) => {
   const form = useFormik({
     initialValues: {
-      owner: 'kvorma',
-      name: 'patientor',
+      owner: owner || 'kvorma',
+      name: name || 'patientor',
       rating: '20',
       review: 'testing from the app',
     },
@@ -79,28 +79,29 @@ export const ReviewForm = ({ onSubmit }) => {
 }
 
 const Review = () => {
+  const props = useParams()
   const [addReview, result] = useCreateReview()
   const navigate = useNavigate()
 
   const onSubmit = async (values) => {
     try {
-      const newReview = await addReview({
+      const resData = await addReview({
         ownerName: values.owner,
         repositoryName: values.name,
         rating: Number(values.rating),
         text: values.review,
       })
-      navigate(`/view/${newReview}`)
+      navigate(`/view/${resData.repositoryId}`)
     } catch (err) {
       console.error('add review:', err.message)
     }
   }
-  if (result.loading) return <Text>Updating</Text>
+  if (result.loading) return <Text>Updating..</Text>
   if (result.error) {
     Alert.alert('Adding review failed', result.error.message)
     return <Navigate to="/" />
   }
-  return <ReviewForm onSubmit={onSubmit} />
+  return <ReviewForm onSubmit={onSubmit} {...props} />
 }
 
 export default Review

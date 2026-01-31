@@ -2,9 +2,10 @@ import { Image, View, Pressable } from 'react-native'
 import { openURL } from 'expo-linking'
 
 import Text from './Text'
-import Subheading from './Subheading'
+import { Subheading } from './Utils'
 import { num2k } from '../utils/utils'
 import { styles } from '../theme'
+import { useNavigate } from 'react-router-native'
 
 const StatsItem = ({ label, count }) => {
   return (
@@ -15,9 +16,16 @@ const StatsItem = ({ label, count }) => {
   )
 }
 
-const RepositoryItem = ({ item, singleView }) => {
-  const onPress = (url) => {
+const RepositoryItem = ({ item, detailed, login }) => {
+  const navigate = useNavigate()
+
+  const onGitPress = (url) => {
     openURL(url)
+  }
+
+  const onReviewPress = (fullName) => {
+    const [owner, name] = fullName.split('/')
+    navigate(`/review/${owner}/${name}`)
   }
 
   return (
@@ -43,15 +51,22 @@ const RepositoryItem = ({ item, singleView }) => {
         <StatsItem label="Reviews" count={item.reviewCount} />
         <StatsItem label="Rating" count={item.ratingAverage} />
       </View>
-      {singleView && (
-        <View>
-          <Pressable onPress={() => onPress(item.url)}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+        {detailed && (
+          <Pressable onPress={() => onGitPress(item.url)}>
             <Text style={styles.submit} fontWeight="bold">
               Open In GitHub
             </Text>
           </Pressable>
-        </View>
-      )}
+        )}
+        {login && (
+          <Pressable onPress={() => onReviewPress(item.fullName)}>
+            <Text style={styles.submit} fontWeight="bold">
+              Review Repository
+            </Text>
+          </Pressable>
+        )}
+      </View>
     </View>
   )
 }

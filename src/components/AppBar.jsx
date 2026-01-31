@@ -1,8 +1,10 @@
 import { Pressable, ScrollView } from 'react-native'
 import { Link } from 'react-router-native'
 import Text from './Text'
+import { Error, Loading } from './Utils'
 import { styles } from '../theme'
 import useGetUser from '../hooks/useGetUser'
+import { useEffect } from 'react'
 
 const AppBarTab = ({ children }) => {
   return (
@@ -17,8 +19,17 @@ const AppBarTab = ({ children }) => {
   )
 }
 
-const AppBar = () => {
-  const signed = useGetUser() // === null ? false : true
+const AppBar = ({ setLogin }) => {
+  const { loading, error, data } = useGetUser()
+
+  useEffect(() => {
+    console.log('useEffect:data', data)
+    setLogin(data?.me?.username ? data.me.username : null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
+
+  if (loading) return <Loading>Checking login status..</Loading>
+  if (error) return <Error>Error checking login status: {error.message}</Error>
 
   return (
     <Pressable>
@@ -30,13 +41,13 @@ const AppBar = () => {
         <Link to="/">
           <AppBarTab>Repositories</AppBarTab>
         </Link>
-        {signed ? (
+        {data.me ? (
           <>
             <Link to="/review">
               <AppBarTab>Submit a Review</AppBarTab>
             </Link>
             <Link to="/signout">
-              <AppBarTab>Sign Out {signed.username}</AppBarTab>
+              <AppBarTab>Sign Out {data.me.username}</AppBarTab>
             </Link>
           </>
         ) : (

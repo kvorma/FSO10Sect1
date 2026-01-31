@@ -131,4 +131,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  subheading: {
+    paddingBottom: 5,
+    paddingTop: 5,
+  },
+  separator: {
+    height: theme.sizes.gap,
+  },
 })

@@ -4,12 +4,12 @@ import { ADD_REVIEW } from '../graphql/mutations'
 const useCreateReview = () => {
   const [mutate, result] = useMutation(ADD_REVIEW)
 
-  const reviewFn = async (review) => {
+  const mutateFn = async (review) => {
     const { data } = await mutate({ variables: { review } })
-    return data.createReview.repositoryId
+    return data.createReview
   }
 
-  return [reviewFn, result]
+  return [mutateFn, result]
 }
 
 export default useCreateReview

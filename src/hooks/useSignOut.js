@@ -9,6 +9,7 @@ const useSignOut = () => {
     await auth.removeAccessToken()
     client.resetStore()
   }
+
   return signOut
 }
 

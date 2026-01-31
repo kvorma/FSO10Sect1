@@ -4,7 +4,7 @@ import Alert from '@blazejkustra/react-native-alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import Text from './Text'
-import InputLine from './InputLine'
+import { Loading, InputLine } from './Utils'
 import { styles } from '../theme'
 import { colorBorder } from '../utils/utils'
 import useSignIn from '../hooks/useSignIn'
@@ -50,7 +50,7 @@ export const SignInForm = ({ onSubmit }) => {
 }
 
 const SignIn = () => {
-  const [signIn] = useSignIn()
+  const [signIn, result] = useSignIn()
   const navigate = useNavigate()
 
   const onSubmit = async (values) => {
@@ -59,11 +59,13 @@ const SignIn = () => {
     try {
       await signIn({ username, password })
       navigate('/')
-    } catch (e) {
-      Alert.alert('Sign in failed', e.message)
-      console.log('Auth failed:', e.message)
+    } catch (err) {
+      Alert.alert('Sign in failed', err.message)
+      console.log('Auth failed:', username, err.message)
     }
   }
+  if (result.loading) return <Loading>Signing in..</Loading>
+  /* try..catch is signUp() manages error condition */
 
   return <SignInForm onSubmit={onSubmit} />
 }
