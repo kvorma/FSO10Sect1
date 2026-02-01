@@ -144,4 +144,12 @@ export const styles = StyleSheet.create({
     flexBasis: '100%',
     justifyContent: 'space-evenly',
   },
+  sortPicker: {
+    height: theme.sizes.inputHeight,
+    backgroundColor: '#fff', //theme.colors.mainBackground,
+    marginHorizontal: theme.sizes.gap,
+    marginTop: theme.sizes.gap,
+    borderWidth: theme.sizes.border,
+    borderRadius: theme.sizes.radius,
+  },
 })
