@@ -28,8 +28,6 @@ const RepositoryItem = ({ item, detailed, login }) => {
     navigate(`/review/${owner}/${name}`)
   }
 
-  const bw = login ? '50%' : '100%'
-
   return (
     <View testID="repositoryItem" style={styles.itemContainer}>
       <View style={styles.topRow}>
@@ -57,14 +55,14 @@ const RepositoryItem = ({ item, detailed, login }) => {
         {detailed && (
           <Nappula
             text="Open In GitHub"
-            vstyle={{ width: bw, alignItems: 'stretch' }}
+            vstyle={{ flex: -1, width: '100%', minWidth: '50%' }}
             onPress={() => onGitPress(item.url)}
           />
         )}
         {login && (
           <Nappula
             text="Review the Repository"
-            vstyle={{ width: bw, alignItems: 'stretch' }}
+            vstyle={{ flex: -1, width: '100%', minWidth: '50%' }}
             onPress={() => onReviewPress(item.fullName)}
           />
         )}

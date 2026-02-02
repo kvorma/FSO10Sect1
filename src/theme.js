@@ -37,6 +37,7 @@ export const theme = {
 
 export const styles = StyleSheet.create({
   mainContainer: {
+    maxWidth: 800,
     flexGrow: 1,
     flex: 1,
     flexDirection: 'column',
@@ -149,7 +150,7 @@ export const styles = StyleSheet.create({
   },
   buttonRow: {
     flexDirection: 'row',
-    width: '100%',
+    flex: -1,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -164,13 +165,14 @@ export const styles = StyleSheet.create({
   },
   clearButton: {
     textAlign: 'center',
-    color: theme.colors.textPrimary,
+    color: theme.colors.textSecondary,
     backgroundColor: theme.colors.panel,
     padding: 1,
     borderWidth: 1,
     borderRadius: theme.sizes.radius,
+    borderColor: theme.colors.textSecondary,
     width: 20,
-    marginLeft: -30,
+    marginLeft: '-140%',
     marginRight: 0,
   },
 })

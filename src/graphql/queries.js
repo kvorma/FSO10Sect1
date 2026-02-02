@@ -54,10 +54,21 @@ export const GET_REVIEWS = gql /* GraphQL */ `
 `
 
 export const ME = gql /* GraphQL */ `
-  query {
+  query me($includeReviews: Boolean = false) {
     me {
       id
       username
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            repositoryId
+            rating
+            text
+            createdAt
+            id
+          }
+        }
+      }
     }
   }
 `
