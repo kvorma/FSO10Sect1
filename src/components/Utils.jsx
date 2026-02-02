@@ -1,4 +1,4 @@
-import { View, TextInput } from 'react-native-web'
+import { View, TextInput, Pressable } from 'react-native-web'
 import Text from './Text'
 import { fErr } from '../utils/utils'
 import { styles } from '../theme'
@@ -43,5 +43,20 @@ export const InputLine = ({ form, bc, ph, fn, ...props }) => {
         {fErr(form, fn) && <Text color="error">{form.errors[fn]}</Text>}
       </View>
     </View>
+  )
+}
+
+export const Nappula = ({
+  text,
+  onPress,
+  vstyle = styles.panel,
+  tstyle = styles.submit,
+}) => {
+  return (
+    <Pressable style={vstyle} onPress={onPress}>
+      <Text style={tstyle} fontWeight="bold">
+        {text}
+      </Text>
+    </Pressable>
   )
 }

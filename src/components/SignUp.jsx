@@ -1,10 +1,9 @@
-import { Pressable, View } from 'react-native'
+import { View } from 'react-native'
 import { useNavigate } from 'react-router-native'
 import Alert from '@blazejkustra/react-native-alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import Text from './Text'
-import { Loading, InputLine } from './Utils'
+import { Loading, InputLine, Nappula } from './Utils'
 import { styles } from '../theme'
 import { colorBorder } from '../utils/utils'
 import useSignUp from '../hooks/useSignUp'
@@ -42,7 +41,13 @@ export const SignUpForm = ({ onSubmit }) => {
 
   return (
     <View style={styles.mainContainer}>
-      <InputLine form={formik} bc={userColor} ph="Username" fn="username" />
+      <InputLine
+        autoFocus="true"
+        form={formik}
+        bc={userColor}
+        ph="Username"
+        fn="username"
+      />
       <InputLine
         form={formik}
         bc={pwColor}
@@ -58,13 +63,7 @@ export const SignUpForm = ({ onSubmit }) => {
         secureTextEntry="true"
         onSubmitEditing={formik.handleSubmit}
       />
-      <View style={styles.panel}>
-        <Pressable onPress={formik.handleSubmit}>
-          <Text style={styles.submit} fontWeight="bold">
-            Sign Up
-          </Text>
-        </Pressable>
-      </View>
+      <Nappula text="Sign Up" onPress={formik.handleSubmit} />
     </View>
   )
 }

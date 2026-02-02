@@ -1,8 +1,8 @@
-import { Image, View, Pressable } from 'react-native'
+import { Image, View } from 'react-native'
 import { openURL } from 'expo-linking'
 
 import Text from './Text'
-import { Subheading } from './Utils'
+import { Subheading, Nappula } from './Utils'
 import { num2k } from '../utils/utils'
 import { styles } from '../theme'
 import { useNavigate } from 'react-router-native'
@@ -27,6 +27,8 @@ const RepositoryItem = ({ item, detailed, login }) => {
     const [owner, name] = fullName.split('/')
     navigate(`/review/${owner}/${name}`)
   }
+
+  const bw = login ? '50%' : '100%'
 
   return (
     <View testID="repositoryItem" style={styles.itemContainer}>
@@ -53,18 +55,18 @@ const RepositoryItem = ({ item, detailed, login }) => {
       </View>
       <View style={styles.buttonRow}>
         {detailed && (
-          <Pressable onPress={() => onGitPress(item.url)}>
-            <Text style={styles.submit} fontWeight="bold">
-              Open In GitHub
-            </Text>
-          </Pressable>
+          <Nappula
+            text="Open In GitHub"
+            vstyle={{ width: bw, alignItems: 'stretch' }}
+            onPress={() => onGitPress(item.url)}
+          />
         )}
         {login && (
-          <Pressable onPress={() => onReviewPress(item.fullName)}>
-            <Text style={styles.submit} fontWeight="bold">
-              Review Repository
-            </Text>
-          </Pressable>
+          <Nappula
+            text="Review the Repository"
+            vstyle={{ width: bw, alignItems: 'stretch' }}
+            onPress={() => onReviewPress(item.fullName)}
+          />
         )}
       </View>
     </View>

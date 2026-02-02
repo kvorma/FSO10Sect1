@@ -1,20 +1,32 @@
 import { useState } from 'react'
-import { FlatList, Pressable, View, TextInput } from 'react-native'
+import { FlatList, Pressable, TextInput, View } from 'react-native'
 import { useNavigate } from 'react-router-native'
 import { Picker } from '@react-native-picker/picker'
+import { useDebounce } from 'use-debounce'
 import { O, useRepositories } from '../hooks/useRepositories'
 import RepositoryItem from './RepositoryItem'
-import { Error, Loading, ItemSeparator } from './Utils'
+import { Error, Loading, ItemSeparator, Nappula } from './Utils'
 import { styles } from '../theme'
 
 const FilterInput = ({ filter, setFilter }) => {
   return (
-    <TextInput
-      style={styles.textInput}
-      onChangeText={setFilter}
-      value={filter}
-      placeholder="Filter by"
-    />
+    <View style={styles.buttonRow}>
+      <TextInput
+        style={styles.textInput}
+        onChangeText={setFilter}
+        value={filter}
+        placeholder="Filter by"
+        autoFocus="true"
+      />
+      <Nappula
+        text="X"
+        onPress={() => {
+          setFilter('')
+        }}
+        vstyle={{}}
+        tstyle={styles.clearButton}
+      />
+    </View>
   )
 }
 
@@ -26,7 +38,10 @@ const SortMenu = ({ order, setOrder }) => {
       onValueChange={(itemValue, itemIndex) => setOrder(itemValue)}
     >
       <Picker.Item label="Sort by Latest Repositories" value={O.LATEST} />
-      <Picker.Item label="Sort by Highest rated Repositories" value={O.HIGHEST} />
+      <Picker.Item
+        label="Sort by Highest rated Repositories"
+        value={O.HIGHEST}
+      />
       <Picker.Item label="Sort by Lowest Rated Repositories" value={O.LOWEST} />
     </Picker>
   )
@@ -51,10 +66,10 @@ export const RepositoryListContainer = ({
       data={nodes}
       ItemSeparatorComponent={ItemSeparator}
       ListHeaderComponent={() => (
-        <View>
+        <>
           <SortMenu order={order} setOrder={setOrder} />
           <FilterInput filter={filter} setFilter={setFilter} />
-        </View>
+        </>
       )}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
@@ -69,7 +84,8 @@ export const RepositoryListContainer = ({
 const RepositoryList = () => {
   const [order, setOrder] = useState(O.LATEST)
   const [filter, setFilter] = useState('')
-  const { loading, error, data } = useRepositories(order, filter)
+  const [delayedFilter] = useDebounce(filter, 500)
+  const { loading, error, data } = useRepositories(order, delayedFilter)
 
   if (loading) return <Loading>Loading repositories..</Loading>
   if (error) return <Error>Error loading repositories: {error.message}</Error>

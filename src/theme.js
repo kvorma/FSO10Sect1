@@ -30,27 +30,35 @@ export const theme = {
     gap: 10,
     radius: 5,
     border: 2,
+    widthPct: '96%',
+    marginPct: '2%',
   },
 }
 
 export const styles = StyleSheet.create({
   mainContainer: {
     flexGrow: 1,
-    flexShrink: 1,
     flex: 1,
     flexDirection: 'column',
+    alignItems: 'stretch',
     backgroundColor: theme.colors.mainBackground,
     padding: 0,
   },
   itemContainer: {
     flex: 1,
-    padding: theme.sizes.gap,
     backgroundColor: theme.colors.panel,
   },
   appBarContainer: {
     height: theme.sizes.inputHeight,
     backgroundColor: theme.colors.textPrimary,
     flexDirection: 'row',
+  },
+  panel: {
+    backgroundColor: theme.colors.panel,
+    width: '100%',
+    height: theme.sizes.panelHeight,
+    margin: 0,
+    alignItems: 'stretch',
   },
   appBarAlign: {
     GapHorizontal: 10,
@@ -60,20 +68,16 @@ export const styles = StyleSheet.create({
     padding: 8,
   },
   textInput: {
+    width: theme.sizes.widthPct,
+    marginLeft: theme.sizes.marginPct,
+    height: theme.sizes.inputHeight,
+    marginVertical: theme.sizes.gap,
     color: theme.colors.textPrimary,
     placeholderTextColor: theme.colors.textSecondary,
-    //   borderColor: theme.colors.textPrimary,
     backgroundColor: theme.colors.panel,
-    height: theme.sizes.inputHeight,
-    margin: theme.sizes.gap,
     borderWidth: theme.sizes.border,
     borderRadius: theme.sizes.radius,
-    paddingLeft: theme.sizes.gap,
-  },
-  panel: {
-    backgroundColor: theme.colors.panel,
-    height: theme.sizes.panelHeight,
-    margin: 0,
+    paddingHorizontal: theme.sizes.gap,
   },
   error: {
     height: theme.sizes.panelHeight - theme.sizes.inputHeight,
@@ -83,15 +87,16 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.panel,
   },
   submit: {
-    alignSelf: 'stretch',
+    //alignSelf: 'stretch',
     textAlign: 'center',
     color: theme.colors.textLight,
     backgroundColor: theme.colors.primary,
+    maxWidth: theme.sizes.widthPct,
     height: theme.sizes.inputHeight,
     margin: theme.sizes.gap,
     borderWidth: theme.sizes.border,
     borderRadius: theme.sizes.radius,
-    padding: theme.sizes.gap,
+    paddingVertical: theme.sizes.gap,
   },
   topRow: {
     flexDirection: 'row',
@@ -111,6 +116,7 @@ export const styles = StyleSheet.create({
   statsItem: {
     flexDirection: 'column',
     alignItems: 'center',
+    marginBlock: theme.sizes.gap / 2,
   },
   languageItem: {
     backgroundColor: theme.colors.primary,
@@ -120,6 +126,8 @@ export const styles = StyleSheet.create({
     marginBottom: theme.sizes.radius,
   },
   tinyLogo: {
+    alignSelf: 'center',
+    marginLeft: theme.sizes.gap,
     width: 50,
     height: 50,
   },
@@ -141,15 +149,28 @@ export const styles = StyleSheet.create({
   },
   buttonRow: {
     flexDirection: 'row',
-    flexBasis: '100%',
-    justifyContent: 'space-evenly',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   sortPicker: {
+    width: theme.sizes.widthPct,
+    alignSelf: 'center',
     height: theme.sizes.inputHeight,
-    backgroundColor: '#fff', //theme.colors.mainBackground,
-    marginHorizontal: theme.sizes.gap,
+    backgroundColor: theme.colors.panel,
     marginTop: theme.sizes.gap,
     borderWidth: theme.sizes.border,
     borderRadius: theme.sizes.radius,
+  },
+  clearButton: {
+    textAlign: 'center',
+    color: theme.colors.textPrimary,
+    backgroundColor: theme.colors.panel,
+    padding: 1,
+    borderWidth: 1,
+    borderRadius: theme.sizes.radius,
+    width: 20,
+    marginLeft: -30,
+    marginRight: 0,
   },
 })
