@@ -47,12 +47,7 @@ export const ReviewForm = ({ onSubmit, owner, name }) => {
         ph="Reposity owner name"
         fn="owner"
       />
-      <InputLine
-        form={form}
-        bc={nameBorderColor}
-        ph="Reposity name"
-        fn="name"
-      />
+      <InputLine form={form} bc={nameBorderColor} ph="Reposity name" fn="name" />
       <InputLine
         form={form}
         bc={ratingBorderColor}

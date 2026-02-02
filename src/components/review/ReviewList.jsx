@@ -1,8 +1,11 @@
 import { View, FlatList } from 'react-native'
+import Alert from '@blazejkustra/react-native-alert'
 import Text from '../util/Text'
-import { ItemSeparator } from '../util/Utils'
-import { styles } from '../../theme'
+import { ItemSeparator, Nappula } from '../util/Utils'
+import { styles, theme } from '../../theme'
 import { formatDate } from '../../utils/utils'
+import { useNavigate } from 'react-router-native'
+import useDeleteReview from '../../hooks/useDeleteReview'
 
 const ReviewItem = ({ name, rating, createdAt, text }) => {
   return (
@@ -23,17 +26,47 @@ const ReviewItem = ({ name, rating, createdAt, text }) => {
   )
 }
 
-const ReviewList = ({ nodes, listHeader }) => {
+const ReviewList = ({ action, nodes, listHeader }) => {
+  const navigate = useNavigate()
+  const [deleteFn] = useDeleteReview()
+
+  const onDelete = (reviewId) => {
+    Alert.alert('Confirm', 'Delete Review?', [
+      { text: 'No', style: 'cancel' },
+      {
+        text: 'Yes',
+        onPress: () => deleteFn(reviewId),
+        style: 'default',
+      },
+    ])
+  }
   return (
     <FlatList
       data={nodes}
       renderItem={({ item }) => (
-        <ReviewItem
-          name={item?.user?.username || item?.repository?.fullName || 'error'}
-          rating={item.rating}
-          createdAt={item.createdAt}
-          text={item.text}
-        />
+        <View style={styles.itemContainer}>
+          <ReviewItem
+            name={item?.user?.username || item?.repository?.fullName || 'error'}
+            rating={item.rating}
+            createdAt={item.createdAt}
+            text={item.text}
+          />
+          {action && (
+            <View style={styles.buttonRow}>
+              <Nappula
+                text="View Repository"
+                vstyle={{ flex: -1, width: '50%' }}
+                onPress={() => navigate('/view/' + item.repositoryId)}
+              />
+              <Nappula
+                text="Delete Review"
+                vstyle={{ flex: -1, width: '50%' }}
+                tstyle={[styles.submit, { backgroundColor: theme.colors.error }]}
+                onPress={() => onDelete(item.id)}
+              />
+            </View>
+          )}
+        </View>
       )}
       keyExtractor={({ id }) => id}
       ListHeaderComponent={listHeader}

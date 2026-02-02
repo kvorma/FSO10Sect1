@@ -5,13 +5,13 @@ import { styles } from '../../theme'
 
 export const ItemSeparator = () => <View style={styles.separator} />
 
-export const Subheading = ({ color, fontWeight, children }) => {
+export const Subheading = ({ color, fontWeight, addStyles, children }) => {
   return (
     <Text
       color={color || 'textPrimary'}
       fontWeight={fontWeight || 'bold'}
       fontSize="subheading"
-      style={styles.subheading}
+      style={addStyles ? [styles.subheading, addStyles] : styles.subheading}
     >
       {children}
     </Text>

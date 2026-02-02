@@ -57,8 +57,8 @@ export const styles = StyleSheet.create({
   },
   panel: {
     backgroundColor: theme.colors.panel,
-    width: '100%',
-    height: theme.sizes.panelHeight,
+    // width: '100%',
+    //height: theme.sizes.panelHeight,
     margin: 0,
     alignItems: 'stretch',
   },
@@ -142,16 +142,15 @@ export const styles = StyleSheet.create({
   },
   subheading: {
     paddingBottom: 5,
-    paddingTop: 5,
+    //  paddingTop: 5,
   },
   separator: {
     height: theme.sizes.gap,
   },
   buttonRow: {
     flexDirection: 'row',
-    flex: -1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   sortPicker: {
     width: theme.sizes.widthPct,
@@ -168,10 +167,10 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.panel,
     padding: 1,
     borderWidth: 1,
-    borderRadius: theme.sizes.radius,
+    borderRadius: 10,
     borderColor: theme.colors.textSecondary,
-    // width: 20,
-    marginLeft: '-140%',
-    marginRight: 0,
+    width: 20,
+    height: 20,
+    left: -30,
   },
 })

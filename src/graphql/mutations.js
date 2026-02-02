@@ -23,3 +23,8 @@ export const ADD_REVIEW = gql /* GraphQL */ `
     }
   }
 `
+export const DEL_REVIEW = gql /* GraphQL */ `
+  mutation DeleteReview($deleteReviewId: ID!) {
+    deleteReview(id: $deleteReviewId)
+  }
+`

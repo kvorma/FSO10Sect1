@@ -12,7 +12,7 @@ const FilterInput = ({ filter, setFilter }) => {
   return (
     <View style={styles.buttonRow}>
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, { alignSelf: 'stretch', right: -30 }]}
         onChangeText={setFilter}
         value={filter}
         placeholder="Filter by"
@@ -38,10 +38,7 @@ const SortMenu = ({ order, setOrder }) => {
       onValueChange={(itemValue, itemIndex) => setOrder(itemValue)}
     >
       <Picker.Item label="Sort by Latest Repositories" value={O.LATEST} />
-      <Picker.Item
-        label="Sort by Highest rated Repositories"
-        value={O.HIGHEST}
-      />
+      <Picker.Item label="Sort by Highest rated Repositories" value={O.HIGHEST} />
       <Picker.Item label="Sort by Lowest Rated Repositories" value={O.LOWEST} />
     </Picker>
   )
