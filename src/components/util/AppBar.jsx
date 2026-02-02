@@ -2,8 +2,8 @@ import { Pressable, ScrollView } from 'react-native'
 import { Link } from 'react-router-native'
 import Text from './Text'
 import { Error, Loading } from './Utils'
-import { styles } from '../theme'
-import useGetUser from '../hooks/useGetUser'
+import { styles } from '../../theme'
+import useGetUser from '../../hooks/useGetUser'
 import { useEffect } from 'react'
 
 const AppBarTab = ({ children }) => {
@@ -43,7 +43,10 @@ const AppBar = ({ setLogin }) => {
         {data.me ? (
           <>
             <Link to="/review">
-              <AppBarTab>Submit a Review</AppBarTab>
+              <AppBarTab>Add a Review</AppBarTab>
+            </Link>
+            <Link to="/myreviews">
+              <AppBarTab>My Reviews</AppBarTab>
             </Link>
             <Link to="/signout">
               <AppBarTab>Sign Out {data.me.username}</AppBarTab>

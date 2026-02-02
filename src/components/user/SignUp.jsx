@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-native'
 import Alert from '@blazejkustra/react-native-alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import { Loading, InputLine, Nappula } from './Utils'
-import { styles } from '../theme'
-import { colorBorder } from '../utils/utils'
-import useSignUp from '../hooks/useSignUp'
+import { Loading, InputLine, Nappula } from '../util/Utils'
+import { styles } from '../../theme'
+import { colorBorder } from '../../utils/utils'
+import useSignUp from '../../hooks/useSignUp'
 
 const validationSchema = yup.object().shape({
   username: yup

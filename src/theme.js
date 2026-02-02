@@ -48,6 +48,7 @@ export const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
     backgroundColor: theme.colors.panel,
+    padding: theme.sizes.gap,
   },
   appBarContainer: {
     height: theme.sizes.inputHeight,
@@ -108,7 +109,6 @@ export const styles = StyleSheet.create({
     maxWidth: '80%',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    flexWrap: 'wrap',
   },
   statsRow: {
     flexDirection: 'row',
@@ -128,7 +128,6 @@ export const styles = StyleSheet.create({
   },
   tinyLogo: {
     alignSelf: 'center',
-    marginLeft: theme.sizes.gap,
     width: 50,
     height: 50,
   },
@@ -171,7 +170,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: theme.sizes.radius,
     borderColor: theme.colors.textSecondary,
-    width: 20,
+    // width: 20,
     marginLeft: '-140%',
     marginRight: 0,
   },

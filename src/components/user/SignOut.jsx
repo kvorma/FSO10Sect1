@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-native'
-import useSignOut from '../hooks/useSignOut'
+import useSignOut from '../../hooks/useSignOut'
 import Alert from '@blazejkustra/react-native-alert'
 
 const SignOut = () => {

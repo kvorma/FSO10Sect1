@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { Route, Routes, Navigate } from 'react-router-native'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
-import RepositoryList from './RepositoryList'
-import AppBar from './AppBar'
-import SignIn from './SignIn'
-import SignUp from './SignUp'
-import SignOut from './SignOut'
-import RepositoryView from './RepositoryView'
-import Review from './Review'
+import RepositoryList from './repo/RepositoryList'
+import AppBar from './util/AppBar'
+import SignIn from './user/SignIn'
+import SignUp from './user/SignUp'
+import SignOut from './user/SignOut'
+import RepositoryView from './repo/RepositoryView'
+import Review from './review/CreateReview'
+import MyReviews from './review/MyReviews'
 import { styles } from '../theme'
 
 const Main = () => {
@@ -24,6 +25,7 @@ const Main = () => {
           />
           <Route path="/review/:owner/:name" element={<Review />} />
           <Route path="/review" element={<Review />} />
+          <Route path="/myreviews" element={<MyReviews />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />

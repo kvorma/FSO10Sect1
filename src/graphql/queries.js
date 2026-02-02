@@ -66,6 +66,9 @@ export const ME = gql /* GraphQL */ `
             text
             createdAt
             id
+            repository {
+              fullName
+            }
           }
         }
       }

@@ -1,10 +1,10 @@
 import { Image, View } from 'react-native'
 import { openURL } from 'expo-linking'
 
-import Text from './Text'
-import { Subheading, Nappula } from './Utils'
-import { num2k } from '../utils/utils'
-import { styles } from '../theme'
+import Text from '../util/Text'
+import { Subheading, Nappula } from '../util/Utils'
+import { num2k } from '../../utils/utils'
+import { styles } from '../../theme'
 import { useNavigate } from 'react-router-native'
 
 const StatsItem = ({ label, count }) => {

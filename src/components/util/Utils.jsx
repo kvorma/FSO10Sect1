@@ -1,7 +1,7 @@
 import { View, TextInput, Pressable } from 'react-native-web'
 import Text from './Text'
-import { fErr } from '../utils/utils'
-import { styles } from '../theme'
+import { fErr } from '../../utils/utils'
+import { styles } from '../../theme'
 
 export const ItemSeparator = () => <View style={styles.separator} />
 

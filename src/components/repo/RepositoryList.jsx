@@ -3,10 +3,10 @@ import { FlatList, Pressable, TextInput, View } from 'react-native'
 import { useNavigate } from 'react-router-native'
 import { Picker } from '@react-native-picker/picker'
 import { useDebounce } from 'use-debounce'
-import { O, useRepositories } from '../hooks/useRepositories'
+import { O, useRepositories } from '../../hooks/useRepositories'
 import RepositoryItem from './RepositoryItem'
-import { Error, Loading, ItemSeparator, Nappula } from './Utils'
-import { styles } from '../theme'
+import { Error, Loading, ItemSeparator, Nappula } from '../util/Utils'
+import { styles } from '../../theme'
 
 const FilterInput = ({ filter, setFilter }) => {
   return (

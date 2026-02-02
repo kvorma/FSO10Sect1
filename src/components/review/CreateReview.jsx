@@ -3,11 +3,11 @@ import { useNavigate, Navigate, useParams } from 'react-router-native'
 import Alert from '@blazejkustra/react-native-alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import Text from './Text'
-import { InputLine } from './Utils'
-import { styles } from '../theme'
-import { colorBorder } from '../utils/utils'
-import useCreateReview from '../hooks/useCreateReview'
+import Text from '../util/Text'
+import { InputLine } from '../util/Utils'
+import { styles } from '../../theme'
+import { colorBorder } from '../../utils/utils'
+import useCreateReview from '../../hooks/useCreateReview'
 
 const validationSchema = yup.object().shape({
   owner: yup.string().required('Repository owner is required'),
