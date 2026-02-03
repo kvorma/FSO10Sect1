@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { useNavigate } from 'react-router-native'
+import { useNavigate, useParams } from 'react-router-native'
 import Alert from '@blazejkustra/react-native-alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -13,10 +13,10 @@ const validationSchema = yup.object().shape({
   password: yup.string().required('Password is required'),
 })
 
-export const SignInForm = ({ onSubmit }) => {
+export const SignInForm = ({ onSubmit, user = '' }) => {
   const formik = useFormik({
     initialValues: {
-      username: '',
+      username: user,
       password: '',
     },
     validationSchema,
@@ -50,6 +50,7 @@ export const SignInForm = ({ onSubmit }) => {
 const SignIn = () => {
   const [signIn, result] = useSignIn()
   const navigate = useNavigate()
+  const { username } = useParams()
 
   const onSubmit = async (values) => {
     const { username, password } = values
@@ -65,7 +66,7 @@ const SignIn = () => {
   if (result.loading) return <Loading>Signing in..</Loading>
   /* try..catch is signUp() manages error condition */
 
-  return <SignInForm onSubmit={onSubmit} />
+  return <SignInForm onSubmit={onSubmit} user={username} />
 }
 
 export default SignIn

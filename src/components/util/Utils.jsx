@@ -23,20 +23,35 @@ export const Loading = ({ children }) => {
 }
 
 export const Error = ({ children }) => {
-  return <Subheading color="error">{children}</Subheading>
+  return (
+    <Subheading color="error" addStyles={{ alignSelf: 'center' }}>
+      {children}
+    </Subheading>
+  )
 }
 
 export const InputLine = ({ form, bc, ph, fn, ...props }) => {
   return (
     <View>
-      <View style={styles.panel}>
+      <View
+        style={[
+          styles.panel,
+          { flexDirection: 'row', justifyContent: 'center', alignItems: 'center' },
+        ]}
+      >
         <TextInput
-          style={bc}
+          style={[bc, { marginLeft: 0, marginRight: -20, paddingRight: 30 }]}
           placeholder={ph}
           value={form.values[fn]}
           onChangeText={form.handleChange(fn)}
           onBlur={form.handleBlur(fn)}
           {...props}
+        />
+        <CloseNappula
+          onPress={() => {
+            form.setFieldValue(fn, '', false)
+            form.setTouched({ [fn]: false }, false)
+          }}
         />
       </View>
       <View style={styles.error}>
@@ -58,5 +73,17 @@ export const Nappula = ({
         {text}
       </Text>
     </Pressable>
+  )
+}
+
+export const CloseNappula = ({ onPress }) => {
+  return (
+    <Nappula
+      text="X"
+      onPress={onPress}
+      vstyle={{}}
+      tstyle={styles.clearButton}
+      accessible="no"
+    />
   )
 }

@@ -36,7 +36,7 @@ const ReviewList = ({ action, nodes, listHeader }) => {
       {
         text: 'Yes',
         onPress: () => deleteFn(reviewId),
-        style: 'default',
+        style: 'destructive',
       },
     ])
   }

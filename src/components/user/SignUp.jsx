@@ -21,7 +21,7 @@ const validationSchema = yup.object().shape({
     .required('Password (5 .. 50 chars) is required'),
   confirm: yup
     .string()
-    .oneOf([yup.ref('password')], 'Passwords must match')
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
     .required('Password confirmation is required'),
 })
 
@@ -81,7 +81,7 @@ const SignUp = () => {
     try {
       await signUp(user)
       Alert.alert(`Created user ${user.username}`)
-      navigate('/signin')
+      navigate('/signin/' + user.username)
     } catch (err) {
       Alert.alert('Sign Up failed', err.message)
       console.log('Creating user failed:', err.message)

@@ -156,7 +156,7 @@ export const styles = StyleSheet.create({
     width: theme.sizes.widthPct,
     alignSelf: 'center',
     height: theme.sizes.inputHeight,
-    backgroundColor: theme.colors.panel,
+    backgroundColor: theme.colors.mainBackground,
     marginTop: theme.sizes.gap,
     borderWidth: theme.sizes.border,
     borderRadius: theme.sizes.radius,
@@ -171,6 +171,6 @@ export const styles = StyleSheet.create({
     borderColor: theme.colors.textSecondary,
     width: 20,
     height: 20,
-    left: -30,
+    left: -10,
   },
 })

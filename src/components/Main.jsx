@@ -27,6 +27,7 @@ const Main = () => {
           <Route path="/review" element={<Review />} />
           <Route path="/myreviews" element={<MyReviews />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/signin/:username" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="*" element={<Navigate to="/" replace />} />

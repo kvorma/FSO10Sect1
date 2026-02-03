@@ -5,26 +5,23 @@ import { Picker } from '@react-native-picker/picker'
 import { useDebounce } from 'use-debounce'
 import { O, useRepositories } from '../../hooks/useRepositories'
 import RepositoryItem from './RepositoryItem'
-import { Error, Loading, ItemSeparator, Nappula } from '../util/Utils'
+import { Error, Loading, ItemSeparator, CloseNappula } from '../util/Utils'
 import { styles } from '../../theme'
 
 const FilterInput = ({ filter, setFilter }) => {
   return (
     <View style={styles.buttonRow}>
       <TextInput
-        style={[styles.textInput, { alignSelf: 'stretch', right: -30 }]}
+        style={[styles.textInput, { marginLeft: 0, marginRight: -20 }]}
         onChangeText={setFilter}
         value={filter}
         placeholder="Filter by"
         autoFocus="true"
       />
-      <Nappula
-        text="X"
+      <CloseNappula
         onPress={() => {
           setFilter('')
         }}
-        vstyle={{}}
-        tstyle={styles.clearButton}
       />
     </View>
   )
@@ -61,6 +58,7 @@ export const RepositoryListContainer = ({
   return (
     <FlatList
       data={nodes}
+      ListEmptyComponent={<Error>no repositories to show!</Error>}
       ItemSeparatorComponent={ItemSeparator}
       ListHeaderComponent={() => (
         <>

@@ -10,8 +10,6 @@ const RepositoryView = ({ login }) => {
   const repo = useRepository(repositoryId)
   const review = useReviews(repositoryId)
 
-  //console.log('RepositoryView:repo', repo)
-  //console.log('RepositoryView:review', review)
   if (repo.loading || review.loading) return <Loading>Loading data..</Loading>
   if (repo.error)
     return <Error>Error loading repository info: {repo.error.message}</Error>
