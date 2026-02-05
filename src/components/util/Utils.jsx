@@ -1,4 +1,4 @@
-import { View, TextInput, Pressable } from 'react-native-web'
+import { View, TextInput, Pressable } from 'react-native'
 import Text from './Text'
 import { fErr } from '../../utils/utils'
 import { styles } from '../../theme'
@@ -83,7 +83,7 @@ export const CloseNappula = ({ onPress }) => {
       onPress={onPress}
       vstyle={{}}
       tstyle={styles.clearButton}
-      accessible="no"
+      accessible={false}
     />
   )
 }

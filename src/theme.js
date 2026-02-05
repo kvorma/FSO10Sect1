@@ -4,11 +4,11 @@ export const theme = {
   colors: {
     textPrimary: '#24292e',
     textSecondary: '#b8c0c9', //#586069',
-    textLight: '#fff',
+    textLight: '#ffffff',
     error: '#d73a4a',
     primary: '#0366d6',
     mainBackground: '#e1e4e8',
-    panel: '#fff',
+    panel: '#ffffff',
   },
   fontSizes: {
     body: 14,
@@ -152,14 +152,19 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  sortPicker: {
+  sortPickerWeb: {
     width: theme.sizes.widthPct,
-    alignSelf: 'center',
     height: theme.sizes.inputHeight,
+    alignSelf: 'center',
     backgroundColor: theme.colors.mainBackground,
     marginTop: theme.sizes.gap,
     borderWidth: theme.sizes.border,
     borderRadius: theme.sizes.radius,
+  },
+  sortPickerIOS: {
+    backgroundColor: theme.colors.mainBackground,
+    color: theme.colors.primary,
+    fontWeight: 'bold',
   },
   clearButton: {
     textAlign: 'center',

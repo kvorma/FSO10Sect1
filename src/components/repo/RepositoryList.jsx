@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { FlatList, Pressable, TextInput, View } from 'react-native'
 import { useNavigate } from 'react-router-native'
-import { Picker } from '@react-native-picker/picker'
 import { useDebounce } from 'use-debounce'
-import { O, useRepositories } from '../../hooks/useRepositories'
+import { useRepositories } from '../../hooks/useRepositories'
 import RepositoryItem from './RepositoryItem'
+import SortMenu from '../util/SortPicker'
 import { Error, Loading, ItemSeparator, CloseNappula } from '../util/Utils'
 import { styles } from '../../theme'
+import { O } from '../../constants'
 
 const FilterInput = ({ filter, setFilter }) => {
   return (
@@ -16,7 +17,6 @@ const FilterInput = ({ filter, setFilter }) => {
         onChangeText={setFilter}
         value={filter}
         placeholder="Filter by"
-        autoFocus="true"
       />
       <CloseNappula
         onPress={() => {
@@ -24,20 +24,6 @@ const FilterInput = ({ filter, setFilter }) => {
         }}
       />
     </View>
-  )
-}
-
-const SortMenu = ({ order, setOrder }) => {
-  return (
-    <Picker
-      style={styles.sortPicker}
-      selectedValue={order}
-      onValueChange={(itemValue, itemIndex) => setOrder(itemValue)}
-    >
-      <Picker.Item label="Sort by Latest Repositories" value={O.LATEST} />
-      <Picker.Item label="Sort by Highest rated Repositories" value={O.HIGHEST} />
-      <Picker.Item label="Sort by Lowest Rated Repositories" value={O.LOWEST} />
-    </Picker>
   )
 }
 
@@ -61,10 +47,10 @@ export const RepositoryListContainer = ({
       ListEmptyComponent={<Error>no repositories to show!</Error>}
       ItemSeparatorComponent={ItemSeparator}
       ListHeaderComponent={() => (
-        <>
+        <View>
           <SortMenu order={order} setOrder={setOrder} />
           <FilterInput filter={filter} setFilter={setFilter} />
-        </>
+        </View>
       )}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (

@@ -1,12 +1,6 @@
 import { useQuery } from '@apollo/client/react'
-
 import { GET_REPOSITORIES } from '../graphql/queries'
-
-export const O = {
-  LATEST: 'latest',
-  HIGHEST: 'highest',
-  LOWEST: 'lowest',
-}
+import { O } from '../constants'
 
 export const useRepositories = (order, searchKeyword = '') => {
   let orderBy = 'CREATED_AT'

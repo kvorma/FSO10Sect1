@@ -59,7 +59,7 @@ export const ReviewForm = ({ onSubmit, owner, name }) => {
         bc={reviewBorderColor}
         ph="Review"
         fn="review"
-        multiline="true"
+        multiline={true}
       />
 
       <View style={styles.panel}>

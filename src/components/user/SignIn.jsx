@@ -28,7 +28,7 @@ export const SignInForm = ({ onSubmit, user = '' }) => {
   return (
     <View style={styles.mainContainer}>
       <InputLine
-        autoFocus="true"
+        autoFocus={true}
         form={formik}
         bc={userColor}
         ph="Username"
@@ -39,7 +39,7 @@ export const SignInForm = ({ onSubmit, user = '' }) => {
         bc={pwColor}
         ph="Password"
         fn="password"
-        secureTextEntry="true"
+        secureTextEntry={true}
         onSubmitEditing={formik.handleSubmit}
       />
       <Nappula text="Sign In" onPress={formik.handleSubmit} />
