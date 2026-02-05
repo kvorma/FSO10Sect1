@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-native'
 import useRepository from '../../hooks/useRepository'
-import RepositoryItem from './RepositoryItem'
+import { RepositoryDisplay } from './RepositoryItem'
 import { Error, Loading, ItemSeparator } from '../util/Utils'
 import useReviews from '../../hooks/useReviews'
 import ReviewList from '../review/ReviewList'
@@ -23,7 +23,7 @@ const RepositoryView = ({ login }) => {
       nodes={nodes}
       listHeader={() => (
         <>
-          <RepositoryItem item={repo.data.repository} detailed login={login} />
+          <RepositoryDisplay item={repo.data.repository} login={login} />
           <ItemSeparator />
         </>
       )}

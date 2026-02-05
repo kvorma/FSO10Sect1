@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import { useNavigate, useParams } from 'react-router-native'
-import Alert from '@blazejkustra/react-native-alert'
+import Alert from '../util/Alert'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { Loading, InputLine, Nappula } from '../util/Utils'

@@ -1,9 +1,8 @@
-import { useState } from 'react'
-import { FlatList, Pressable, TextInput, View } from 'react-native'
-import { useNavigate } from 'react-router-native'
+import { useState, Component } from 'react'
+import { FlatList, TextInput, View } from 'react-native'
 import { useDebounce } from 'use-debounce'
 import { useRepositories } from '../../hooks/useRepositories'
-import RepositoryItem from './RepositoryItem'
+import { RepositoryItem } from './RepositoryItem'
 import SortMenu from '../util/SortPicker'
 import { Error, Loading, ItemSeparator, CloseNappula } from '../util/Utils'
 import { styles } from '../../theme'
@@ -13,6 +12,7 @@ const FilterInput = ({ filter, setFilter }) => {
   return (
     <View style={styles.buttonRow}>
       <TextInput
+        autoFocus
         style={[styles.textInput, { marginLeft: 0, marginRight: -20 }]}
         onChangeText={setFilter}
         value={filter}
@@ -27,20 +27,33 @@ const FilterInput = ({ filter, setFilter }) => {
   )
 }
 
-export const RepositoryListContainer = ({
-  nodes,
-  order,
-  setOrder,
-  filter,
-  setFilter,
-}) => {
-  const navigate = useNavigate()
-
-  const onPress = (id) => {
-    const target = `/view/${id}`
-    navigate(target)
+class RepositoryListContainer extends Component {
+  renderHeader = () => {
+    const props = this.props
+    return (
+      <View>
+        <SortMenu order={props.order} setOrder={props.setOrder} />
+        <FilterInput filter={props.filter} setFilter={props.setFilter} />
+      </View>
+    )
   }
 
+  render() {
+    console.log(this.props)
+    return (
+      <FlatList
+        data={this.props.nodes}
+        ListEmptyComponent={<Error> no repositories to show!</Error>}
+        ItemSeparatorComponent={<ItemSeparator />}
+        ListHeaderComponent={this.renderHeader}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <RepositoryItem item={item} />}
+      />
+    )
+  }
+}
+/*
+const RepositoryListContainer = ({ nodes, order, setOrder, filter, setFilter }) => {
   return (
     <FlatList
       data={nodes}
@@ -53,15 +66,11 @@ export const RepositoryListContainer = ({
         </View>
       )}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <Pressable onPress={() => onPress(item.id)}>
-          <RepositoryItem item={item} />
-        </Pressable>
-      )}
+      renderItem={({ item }) => <RepositoryItem item={item} />}
     />
   )
 }
-
+*/
 const RepositoryList = () => {
   const [order, setOrder] = useState(O.LATEST)
   const [filter, setFilter] = useState('')

@@ -161,6 +161,11 @@ export const styles = StyleSheet.create({
     borderWidth: theme.sizes.border,
     borderRadius: theme.sizes.radius,
   },
+  sortPickerAndroid: {
+    backgroundColor: theme.colors.mainBackground,
+    color: theme.colors.primary,
+    fontWeight: 'bold',
+  },
   sortPickerIOS: {
     backgroundColor: theme.colors.mainBackground,
     color: theme.colors.primary,

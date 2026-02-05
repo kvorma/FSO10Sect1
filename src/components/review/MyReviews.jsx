@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-native'
-import Alert from '@blazejkustra/react-native-alert'
+import Alert from '../util/Alert'
 import { Error, Loading } from '../util/Utils'
 import useGetUser from '../../hooks/useGetUser'
 import ReviewList from './ReviewList'

@@ -6,7 +6,7 @@ const SortMenu = ({ order, setOrder }) => {
   return (
     <Picker
       mode="dropdown"
-      style={styles.sortPickerWeb}
+      style={styles.sortPickerAndroid}
       selectedValue={order}
       onValueChange={(itemValue, itemIndex) => setOrder(itemValue)}
     >

@@ -1,5 +1,5 @@
 import { View, FlatList } from 'react-native'
-import Alert from '@blazejkustra/react-native-alert'
+import Alert from '../util/Alert'
 import Text from '../util/Text'
 import { ItemSeparator, Nappula } from '../util/Utils'
 import { styles, theme } from '../../theme'

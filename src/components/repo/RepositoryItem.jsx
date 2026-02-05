@@ -1,4 +1,4 @@
-import { Image, View } from 'react-native'
+import { Image, Pressable, View } from 'react-native'
 import { openURL } from 'expo-linking'
 
 import Text from '../util/Text'
@@ -16,18 +16,7 @@ const StatsItem = ({ label, count }) => {
   )
 }
 
-const RepositoryItem = ({ item, detailed, login }) => {
-  const navigate = useNavigate()
-
-  const onGitPress = (url) => {
-    openURL(url)
-  }
-
-  const onReviewPress = (fullName) => {
-    const [owner, name] = fullName.split('/')
-    navigate(`/review/${owner}/${name}`)
-  }
-
+const RepositoryItemBody = ({ item }) => {
   return (
     <View testID="repositoryItem" style={styles.itemContainer}>
       <View style={styles.topRow}>
@@ -51,14 +40,45 @@ const RepositoryItem = ({ item, detailed, login }) => {
         <StatsItem label="Reviews" count={item.reviewCount} />
         <StatsItem label="Rating" count={item.ratingAverage} />
       </View>
+    </View>
+  )
+}
+
+export const RepositoryItem = ({ item }) => {
+  const navigate = useNavigate()
+
+  const onItemPress = () => {
+    navigate('/view/' + item.id)
+  }
+
+  return (
+    <Pressable onPress={onItemPress}>
+      <RepositoryItemBody item={item} />
+    </Pressable>
+  )
+}
+
+export const RepositoryDisplay = ({ item, login }) => {
+  const navigate = useNavigate()
+
+  const onGitPress = (url) => {
+    openURL(url)
+  }
+
+  const onReviewPress = (fullName) => {
+    const [owner, name] = fullName.split('/')
+    navigate(`/review/${owner}/${name}`)
+  }
+
+  return (
+    <View style={styles.panel}>
+      <RepositoryItemBody item={item} />
       <View style={styles.buttonRow}>
-        {detailed && (
-          <Nappula
-            text="Open In GitHub"
-            vstyle={{ flex: -1, width: '100%', minWidth: '50%' }}
-            onPress={() => onGitPress(item.url)}
-          />
-        )}
+        <Nappula
+          text="Open In GitHub"
+          vstyle={{ flex: -1, width: '100%', minWidth: '50%' }}
+          onPress={() => onGitPress(item.url)}
+        />
         {login && (
           <Nappula
             text="Review the Repository"
