@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Route, Routes, Navigate } from 'react-router-native'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
-import RepositoryList from './repo/RepositoryList'
+import RepositoryPaginatedList from './repo/RepositoryPaginatedList'
 import AppBar from './util/AppBar'
 import SignIn from './user/SignIn'
 import SignUp from './user/SignUp'
 import SignOut from './user/SignOut'
-import RepositoryView from './repo/RepositoryView'
+import RepositoryPaginatedView from './repo/RepositoryPaginatedView'
 import Review from './review/CreateReview'
 import MyReviews from './review/MyReviews'
 import { styles } from '../theme'
@@ -18,10 +18,10 @@ const Main = () => {
       <SafeAreaView style={styles.mainContainer}>
         <AppBar setLogin={setLogin} />
         <Routes>
-          <Route path="/" element={<RepositoryList />} />
+          <Route path="/" element={<RepositoryPaginatedList />} />
           <Route
             path="/view/:repositoryId"
-            element={<RepositoryView login={login} />}
+            element={<RepositoryPaginatedView login={login} />}
           />
           <Route path="/review/:owner/:name" element={<Review />} />
           <Route path="/review" element={<Review />} />

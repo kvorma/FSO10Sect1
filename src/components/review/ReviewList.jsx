@@ -26,7 +26,7 @@ const ReviewItem = ({ name, rating, createdAt, text }) => {
   )
 }
 
-const ReviewList = ({ action, nodes, listHeader }) => {
+const ReviewList = ({ action, nodes, ...props }) => {
   const navigate = useNavigate()
   const [deleteFn] = useDeleteReview()
 
@@ -69,8 +69,8 @@ const ReviewList = ({ action, nodes, listHeader }) => {
         </View>
       )}
       keyExtractor={({ id }) => id}
-      ListHeaderComponent={listHeader}
       ItemSeparatorComponent={<ItemSeparator />}
+      {...props}
     />
   )
 }

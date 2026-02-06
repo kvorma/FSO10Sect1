@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-native'
-import useRepository from '../../hooks/useRepository'
+import { useRepository } from '../../hooks/useRepository'
 import { RepositoryDisplay } from './RepositoryItem'
 import { Error, Loading, ItemSeparator } from '../util/Utils'
-import useReviews from '../../hooks/useReviews'
+import { useReviews } from '../../hooks/useReviews'
 import ReviewList from '../review/ReviewList'
 
 const RepositoryView = ({ login }) => {

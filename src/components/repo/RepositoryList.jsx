@@ -39,7 +39,6 @@ class RepositoryListContainer extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <FlatList
         data={this.props.nodes}
@@ -52,25 +51,7 @@ class RepositoryListContainer extends Component {
     )
   }
 }
-/*
-const RepositoryListContainer = ({ nodes, order, setOrder, filter, setFilter }) => {
-  return (
-    <FlatList
-      data={nodes}
-      ListEmptyComponent={<Error>no repositories to show!</Error>}
-      ItemSeparatorComponent={ItemSeparator}
-      ListHeaderComponent={() => (
-        <View>
-          <SortMenu order={order} setOrder={setOrder} />
-          <FilterInput filter={filter} setFilter={setFilter} />
-        </View>
-      )}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <RepositoryItem item={item} />}
-    />
-  )
-}
-*/
+
 const RepositoryList = () => {
   const [order, setOrder] = useState(O.LATEST)
   const [filter, setFilter] = useState('')

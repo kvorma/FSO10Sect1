@@ -7,7 +7,7 @@ const useSignOut = () => {
 
   const signOut = async () => {
     await auth.removeAccessToken()
-    client.resetStore()
+    await client.resetStore()
   }
 
   return signOut

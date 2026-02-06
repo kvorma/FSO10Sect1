@@ -3,3 +3,5 @@ export const O = {
   HIGHEST: 'highest rated',
   LOWEST: 'lowest rated',
 }
+
+export const PageLength = 4

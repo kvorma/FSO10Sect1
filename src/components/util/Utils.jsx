@@ -19,7 +19,11 @@ export const Subheading = ({ color, fontWeight, addStyles, children }) => {
 }
 
 export const Loading = ({ children }) => {
-  return <Subheading color="textSecondary">{children}</Subheading>
+  return (
+    <Subheading color="textSecondary" addStyles={{ alignSelf: 'center' }}>
+      {children}
+    </Subheading>
+  )
 }
 
 export const Error = ({ children }) => {
