@@ -44,6 +44,7 @@ export const InputLine = ({ form, bc, ph, fn, ...props }) => {
         ]}
       >
         <TextInput
+          autoCapitalize="none"
           style={[bc, { marginLeft: 0, marginRight: -20, paddingRight: 30 }]}
           placeholder={ph}
           value={form.values[fn]}

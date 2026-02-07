@@ -12,7 +12,7 @@ const FilterInput = ({ filter, setFilter }) => {
   return (
     <View style={styles.buttonRow}>
       <TextInput
-        autoFocus
+        autoCapitalize="none"
         style={[styles.textInput, { marginLeft: 0, marginRight: -20 }]}
         onChangeText={setFilter}
         value={filter}

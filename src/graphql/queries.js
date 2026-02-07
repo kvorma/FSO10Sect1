@@ -78,6 +78,8 @@ export const GET_REVIEWS = gql /* GraphQL */ `
 export const PAGINATED_REVIEWS = gql /* GraphQL */ `
   query PaginatedReviews($repositoryId: ID!, $first: Int, $after: String) {
     repository(id: $repositoryId) {
+      fullName
+      id
       reviews(first: $first, after: $after) {
         totalCount
         pageInfo {

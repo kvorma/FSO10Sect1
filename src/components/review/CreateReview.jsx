@@ -80,13 +80,13 @@ const Review = () => {
 
   const onSubmit = async (values) => {
     try {
-      const resData = await addReview({
+      await addReview({
         ownerName: values.owner,
         repositoryName: values.name,
         rating: Number(values.rating),
         text: values.review,
       })
-      navigate(`/view/${resData.repositoryId}`)
+      navigate(`/view/${values.owner}.${values.name}`)
     } catch (err) {
       console.error('add review:', err.message)
     }
