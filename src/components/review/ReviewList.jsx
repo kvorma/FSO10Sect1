@@ -40,13 +40,14 @@ const ReviewList = ({ action, nodes, ...props }) => {
       },
     ])
   }
+
   return (
     <FlatList
       data={nodes}
       renderItem={({ item }) => (
         <View style={styles.itemContainer}>
           <ReviewItem
-            name={item?.user?.username || item?.repository?.fullName || 'error'}
+            name={item?.repository?.fullName || item?.user?.username || 'error'}
             rating={item.rating}
             createdAt={item.createdAt}
             text={item.text}

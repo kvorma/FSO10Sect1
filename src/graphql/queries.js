@@ -104,11 +104,7 @@ export const ME = gql /* GraphQL */ `
       reviews @include(if: $includeReviews) {
         edges {
           node {
-            repositoryId
-            rating
-            text
-            createdAt
-            id
+            ...ReviewFields
             repository {
               fullName
             }
@@ -117,4 +113,5 @@ export const ME = gql /* GraphQL */ `
       }
     }
   }
+  ${REVIEW_FIELDS}
 `

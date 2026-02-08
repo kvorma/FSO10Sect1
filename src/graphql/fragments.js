@@ -20,6 +20,7 @@ export const REVIEW_FIELDS = gql /* GraphQL */ `
     rating
     createdAt
     text
+    repositoryId
     user {
       id
       username

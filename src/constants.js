@@ -4,4 +4,4 @@ export const O = {
   LOWEST: 'lowest rated',
 }
 
-export const PageLength = 4
+export const PageLength = 5

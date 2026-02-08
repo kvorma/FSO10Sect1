@@ -40,7 +40,12 @@ const RepositoryPaginatedList = () => {
   if (error) return <Error>Error loading repositories: {error.message}</Error>
 
   const nodes = repositories ? repositories.edges.map((edge) => edge.node) : []
-
+  const hasMore = repositories?.pageInfo?.hasNextPage
+  const footerMsg = loading
+    ? 'Loading Repositories..'
+    : hasMore
+      ? 'scroll down to fetch more'
+      : 'no more to show'
   return (
     <FlatList
       data={nodes}
@@ -52,15 +57,7 @@ const RepositoryPaginatedList = () => {
           <FilterInput filter={filter} setFilter={setFilter} />
         </View>
       }
-      ListFooterComponent={
-        <View>
-          {loading ? (
-            <Loading> Loading repositories..</Loading>
-          ) : (
-            <Loading>No more items</Loading>
-          )}
-        </View>
-      }
+      ListFooterComponent={<Loading>{footerMsg}</Loading>}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => <RepositoryItem item={item} />}
       onEndReached={fetchMore}
